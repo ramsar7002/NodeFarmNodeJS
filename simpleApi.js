@@ -26,9 +26,11 @@ const dataObj=JSON.parse(data);
 
 const server = http.createServer((req, res)=>{
 
-    const pathName = req.url
+    const {pathname, query}= url.parse(req.url,true);
+
+
     //api page
-    if(pathName==='/api'){
+    if(pathname==='/api'){
         try{
             res.writeHead(200, {'content-type': 'application/json'})
             res.end(data)
@@ -39,7 +41,7 @@ const server = http.createServer((req, res)=>{
         
     }
     //OverView page
-    else if(pathName==='/' || pathName==='/overview'){
+    else if(pathname==='/' || pathname==='/overview'){
         res.writeHead(200, {'content-type': 'text/html'})
 
         const cardsHtml = dataObj.map(el=> replaceTemplate(tempCard, el)).join();
@@ -50,12 +52,14 @@ const server = http.createServer((req, res)=>{
 
     //product page
 
-    else if(pathName==='/product'){
+    else if(pathname==='/product'){
+        const product = dataObj[query.id];
+        const productHtml = replaceTemplate(tempProduct, product)
         res.writeHead(200, {'content-type': 'text/html'})
-        res.end(tempProduct)
+        res.end(productHtml)
     }
 
-    else if(pathName==='/card'){
+    else if(pathname==='/card'){
         res.writeHead(200, {'content-type': 'text/html'})
         res.end(tempCard)
     }
