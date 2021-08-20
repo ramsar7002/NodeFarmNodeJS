@@ -24,9 +24,8 @@ const server = http.createServer((req, res)=>{
         }catch(err){
             res.end(err)
         }
-        
-        
     }
+    
     //OverView page
     else if(pathname==='/' || pathname==='/overview'){
         res.writeHead(200, {'content-type': 'text/html'})
