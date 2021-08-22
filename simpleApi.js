@@ -1,8 +1,8 @@
 const http = require('http');
 const url = require('url');
-const fs = require('fs')
-const slugify = require('slugify')
-const replaceTemplate = require('./modules/replaceTemplate.js')
+const fs = require('fs');
+const slugify = require('slugify');
+const replaceTemplate = require('./modules/replaceTemplate.js');
 
 
 
@@ -67,7 +67,7 @@ const server = http.createServer((req, res)=>{
 
 });
 
-server.listen(8000, '127.0.0.1', ()=>{
+server.listen(8000, 'localhost', ()=>{
     console.log('Listening on requests on port 8000')
 });
 
